@@ -1,0 +1,227 @@
+ <!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <title>
+      Nottingham Traffic Visualization
+    </title>
+  </head>
+
+  <body>
+    <!----------------------------------------
+         Map container
+         MapLibre renders the basemap here.
+         -------------------------------------->
+    <div id="app"></div>
+
+
+    <!--------------------------------------
+         Main control panel
+         ---------------------------------->
+    <div id="control-panel">
+      <!-- Panel title -->
+      <h2>Nottingham Traffic</h2>
+
+<!--------------------------------------
+
+         ---------------------------------->
+  <div class="control-group">
+  <label for="traffic-metric-select">
+    Traffic metric
+  </label>
+
+  <select id="traffic-metric-select">
+    <option value="all_motor_vehicles">
+      All motor vehicles
+    </option>
+
+    <option value="cars_and_taxis">
+      Cars and taxis
+    </option>
+
+    <option value="lgvs">
+      LGVs
+    </option>
+
+    <option value="all_hgvs">
+      All HGVs
+    </option>
+
+    <option value="buses_and_coaches">
+      Buses and coaches
+    </option>
+
+    <option value="two_wheeled_motor_vehicles">
+      Two-wheeled motor vehicles
+    </option>
+
+    <option value="pedal_cycles">
+      Pedal cycles
+    </option>
+  </select>
+</div>
+
+      <!----------------------------------------
+           Display mode
+           Single year or year range
+           ------------------------------------------>
+      <div class="control-group">
+        <label for="view-mode">
+          Display mode
+        </label>
+
+        <select id="view-mode">
+          <option value="single">
+            Single year
+          </option>
+
+          <option value="range">
+            Year range
+          </option>
+
+          <option value="comparison">
+            Six-category comparison
+          </option>
+        </select>
+      </div>
+
+
+      <!------------------------------------------
+           Single-year controls
+           Visible when display mode is single
+           ------------------------------------>
+      <div
+        id="single-year-controls"
+        class="control-group"
+      >
+        <label for="year-select">
+          Year
+        </label>
+
+        <select id="year-select"></select>
+      </div>
+
+
+      <!-----------------------------------------
+           Year-range controls
+           Visible when display mode is range
+           Hidden by default
+           ---------------------------------------->
+      <div
+        id="range-year-controls"
+        class="control-group hidden"
+      >
+        <label for="start-year-select">
+          Start year
+        </label>
+
+        <select id="start-year-select"></select>
+
+        <label for="end-year-select">
+          End year
+        </label>
+
+        <select id="end-year-select"></select>
+
+        <label for="highlight-year-select">
+          Highlight year
+        </label>
+
+        <select id="highlight-year-select">
+          <option value="">
+            None
+          </option>
+        </select>
+      </div>
+
+
+      <!------------------------------------------
+           Current visualization information
+           Values are updated by main.js
+           ------------------------------------->
+      <div class="control-information">
+        <div>
+          Display:
+          <strong id="display-description">
+            2025
+          </strong>
+        </div>
+
+        <div>
+          Visible points:
+          <strong id="visible-count">
+            0
+          </strong>
+        </div>
+
+        <div>
+          Missing slots:
+          <strong id="missing-count">
+            0
+          </strong>
+        </div>
+
+        <div>
+          Metric:
+          <strong id="metric-description">
+            All motor vehicles
+          </strong>
+        </div>
+      </div>
+
+
+      <!------------------------------------------
+           Traffic-volume colour legend
+           Colour uses a logarithmic scale
+           -------------------------------------->
+      <div id="traffic-legend">
+        <div id="legend-title"
+             class="legend-title"
+        >
+          Annual average daily traffic
+        </div>
+
+        <div
+          class="legend-gradient"
+          aria-hidden="true"
+        ></div>
+
+        <div class="legend-values">
+          <span id="legend-min">
+            Low
+          </span>
+
+          <span id="legend-max">
+            High
+          </span>
+        </div>
+
+        <div class="legend-note">
+          Logarithmic colour scale
+        </div>
+
+        <div
+          id="comparison-legend"
+          class="comparison-legend hidden"
+        ></div>
+      </div>
+    </div>
+
+
+    <!-----------------------------------------
+         Application entry point
+         Vite loads main.js as an ES module
+         ------------------------------------>
+    <script
+      type="module"
+      src="/src/main.js"
+    ></script>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+{
+  "name": "nottingham-traffic-ai-local",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "server": "node --watch server/index.js",
+    "server:start": "node server/index.js",
+    "dev:all": "concurrently -k -n WEB,API -c cyan,magenta \"npm:dev\" \"npm:server\"",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "node --check vite.config.js && node --check server/index.js && node --check server/ask-map.js && node --check server/traffic-analysis.js && node --check src/data.js && node --check src/generated-road-bearings.js && node --check src/main.js && node --check src/map-ai-ui.js"
+  },
+  "dependencies": {
+    "@deck.gl/layers": "^9.3.7",
+    "@deck.gl/mapbox": "^9.3.7",
+    "dotenv": "^17.2.1",
+    "express": "^5.1.0",
+    "maplibre-gl": "^6.1.0",
+    "openai": "^5.12.2",
+    "papaparse": "^5.5.4"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.5",
+    "vite": "^8.1.1"
+  }
+}
